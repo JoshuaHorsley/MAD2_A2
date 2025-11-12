@@ -12,13 +12,34 @@ class PlantDetailViewController: UIViewController {
     var onSave: ((Plant) -> Void)?
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
-        // Create plant (either new or updated)
+        // Validate input before saving
+        guard let name = nameTextField.text, !name.trimmingCharacters(in: .whitespaces).isEmpty else {
+            showAlert(title: NSLocalizedString("Invalid Input", comment: "Validation error title"),
+                     message: NSLocalizedString("Please enter a plant name.", comment: "Empty name error"))
+            return
+        }
+        
+        guard let species = speciesTextField.text, !species.trimmingCharacters(in: .whitespaces).isEmpty else {
+            showAlert(title: NSLocalizedString("Invalid Input", comment: "Validation error title"),
+                     message: NSLocalizedString("Please enter a species name.", comment: "Empty species error"))
+            return
+        }
+        
+        guard let frequencyText = wateringFrequencyTextField.text,
+              let frequency = Int(frequencyText),
+              frequency >= 0 else {
+            showAlert(title: NSLocalizedString("Invalid Input", comment: "Validation error title"),
+                     message: NSLocalizedString("Please enter a valid watering frequency (positive number).", comment: "Invalid frequency error"))
+            return
+        }
+        
+        // All validation passed - create plant
         let plantToSave = Plant(
             id: plant?.id ?? UUID(),
-            name: nameTextField.text ?? "",
-            species: speciesTextField.text ?? "",
+            name: name.trimmingCharacters(in: .whitespaces),
+            species: species.trimmingCharacters(in: .whitespaces),
             lastWatered: plant?.lastWatered ?? Date(),
-            wateringFrequency: Int(wateringFrequencyTextField.text ?? "7") ?? 7,
+            wateringFrequency: frequency,
             notes: notesTextView.text ?? ""
         )
         
@@ -35,6 +56,7 @@ class PlantDetailViewController: UIViewController {
         nameTextField.borderStyle = .roundedRect
         speciesTextField.borderStyle = .roundedRect
         wateringFrequencyTextField.borderStyle = .roundedRect
+        wateringFrequencyTextField.keyboardType = .numberPad
         
         // Add rounded corners to notes text view
         notesTextView.layer.cornerRadius = 8
@@ -58,5 +80,12 @@ class PlantDetailViewController: UIViewController {
     // Function to dismiss keyboard
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    // Function to show alert dialogs
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Alert dismiss button"), style: .default))
+        present(alert, animated: true)
     }
 }
