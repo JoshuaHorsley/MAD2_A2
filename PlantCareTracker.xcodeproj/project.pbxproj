@@ -37,6 +37,7 @@
 		3FD6DA392EC2E81600DDCBAC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3FD6DA3C2EC2E81C00DDCBAC /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3FD6DA3E2EC4200A00DDCBAC /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		3FD6DA462EC4FCA700DDCBAC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +176,7 @@
 			children = (
 				3FD6DA192EC100E500DDCBAC /* Base */,
 				3FD6DA322EC2E55B00DDCBAC /* ru */,
+				3FD6DA462EC4FCA700DDCBAC /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

@@ -1,6 +1,12 @@
 /* Class = "UITextView"; text = "Talk about your plants here..."; ObjectID = "04z-1W-68x"; */
 "04z-1W-68x.text" = "Расскажите о ваших растениях здесь...";
 
+/* Class = "UITabBarItem"; title = "My Plants"; ObjectID = "5WU-yb-p7S"; */
+"5WU-yb-p7S.title" = "Мой сад";
+
+/* Class = "UITabBarItem"; title = "Watering Schedule"; ObjectID = "8C5-LW-PhL"; */
+"8C5-LW-PhL.title" = "График полива";
+
 /* Class = "UILabel"; text = "Notes"; ObjectID = "EyK-P7-hI7"; */
 "EyK-P7-hI7.text" = "Примечания";
 
@@ -21,3 +27,15 @@
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "z40-bF-AN9"; */
 "z40-bF-AN9.text" = "Название";
+
+/* Class = "UILabel"; text = "Next water date"; ObjectID = "MZK-xp-TmY"; */
+"MZK-xp-TmY.text" = "Дата следующего полива";
+
+/* Class = "UILabel"; text = "Plant"; ObjectID = "i9e-q6-Vgf"; */
+"i9e-q6-Vgf.text" = "Растение";
+
+/* Class = "UILabel"; text = "Plant Name"; ObjectID = "z40-bF-AN9"; */
+"z40-bF-AN9.text" = "Название растения";
+
+/* Class = "UILabel"; text = "Plant Species"; ObjectID = "VhD-ud-DnF"; */
+"VhD-ud-DnF.text" = "Вид растения";

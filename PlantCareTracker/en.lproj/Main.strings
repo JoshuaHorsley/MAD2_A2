@@ -1,0 +1,42 @@
+
+/* Class = "UITextView"; text = "Talk about your Leafy Friends here..."; ObjectID = "04z-1W-68x"; */
+"04z-1W-68x.text" = "Talk about your Leafy Friends here...";
+
+/* Class = "UITabBarItem"; title = "My Plants"; ObjectID = "5WU-yb-p7S"; */
+"5WU-yb-p7S.title" = "My Plants";
+
+/* Class = "UITabBarItem"; title = "Watering Schedule"; ObjectID = "8C5-LW-PhL"; */
+"8C5-LW-PhL.title" = "Watering Schedule";
+
+/* Class = "UILabel"; text = "Notes"; ObjectID = "EyK-P7-hI7"; */
+"EyK-P7-hI7.text" = "Notes";
+
+/* Class = "UILabel"; text = "Next water date"; ObjectID = "MZK-xp-TmY"; */
+"MZK-xp-TmY.text" = "Next water date";
+
+/* Class = "UIViewController"; title = "Schedule View Controller"; ObjectID = "Plc-U7-vHO"; */
+"Plc-U7-vHO.title" = "Schedule View Controller";
+
+/* Class = "UILabel"; text = "Plant Species"; ObjectID = "VhD-ud-DnF"; */
+"VhD-ud-DnF.text" = "Plant Species";
+
+/* Class = "UINavigationController"; title = "Navigation  Controller"; ObjectID = "Vna-UW-om1"; */
+"Vna-UW-om1.title" = "Navigation  Controller";
+
+/* Class = "UIViewController"; title = "Plant Details"; ObjectID = "XqS-Vf-W1M"; */
+"XqS-Vf-W1M.title" = "Plant Details";
+
+/* Class = "UILabel"; text = "Species"; ObjectID = "cgo-Jr-veA"; */
+"cgo-Jr-veA.text" = "Species";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "gUy-MO-iK4"; */
+"gUy-MO-iK4.text" = "Name";
+
+/* Class = "UILabel"; text = "Watering Freq. (days)"; ObjectID = "hag-Yu-Qa9"; */
+"hag-Yu-Qa9.text" = "Watering Freq. (days)";
+
+/* Class = "UILabel"; text = "Plant"; ObjectID = "i9e-q6-Vgf"; */
+"i9e-q6-Vgf.text" = "Plant";
+
+/* Class = "UILabel"; text = "Plant Name"; ObjectID = "z40-bF-AN9"; */
+"z40-bF-AN9.text" = "Plant Name";

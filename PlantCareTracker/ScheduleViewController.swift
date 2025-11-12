@@ -9,7 +9,7 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Watering Schedule"
+        self.title = NSLocalizedString("Watering Schedule", comment: "Title for watering schedule")
     }
     
     override func viewWillAppear(_ animated: Bool) {

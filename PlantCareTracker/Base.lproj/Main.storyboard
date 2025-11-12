@@ -189,7 +189,7 @@
         <scene sceneID="Fvt-t6-5gx">
             <objects>
                 <navigationController title="Navigation  Controller" automaticallyAdjustsScrollViewInsets="NO" id="Vna-UW-om1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My Plants" image="leaf.fill" catalog="system" id="5WU-yb-p7S"/>
+                    <tabBarItem key="tabBarItem" title="My Garden" image="leaf.fill" catalog="system" id="5WU-yb-p7S"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oJN-KZ-Hfq">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

@@ -1,2 +1,35 @@
-"My Plants" = "Мои растения";
-"Plant Details" = "Детали растения";
+/* Navigation Title - My Garden */
+"My Garden" = "Мой сад";
+
+/* Navigation Title - Watering Schedule */
+"Watering Schedule" = "График полива";
+
+/* Button - Save */
+"Save" = "Сохранить";
+
+/* Button - Cancel */
+"Cancel" = "Отмена";
+
+/* Button - Delete */
+"Delete" = "Удалить";
+
+/* Button - OK */
+"OK" = "ОК";
+
+/* Alert - Invalid Input */
+"Invalid Input" = "Неверный ввод";
+
+/* Alert - Please enter a plant name */
+"Please enter a plant name." = "Пожалуйста, введите название растения.";
+
+/* Alert - Please enter a species name */
+"Please enter a species name." = "Пожалуйста, введите название вида.";
+
+/* Alert - Please enter a valid watering frequency */
+"Please enter a valid watering frequency (positive number)." = "Пожалуйста, введите правильную частоту полива (положительное число).";
+
+/* Alert - Delete Plant */
+"Delete Plant" = "Удалить растение";
+
+/* Alert - Are you sure you want to delete */
+"Are you sure you want to delete %@?" = "Вы уверены, что хотите удалить %@?";
