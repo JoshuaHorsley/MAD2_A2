@@ -1,0 +1,92 @@
+import UIKit
+
+class PlantListTableViewController: UITableViewController {
+    
+    // Array to store all plants
+    var plants: [Plant] = []
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Set the title for the navigation bar
+        self.title = NSLocalizedString("My Plants", comment: "Title for plant list")
+        
+        // Create some sample plants for testing
+        loadSamplePlants()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
+    // Function to create sample plants
+    func loadSamplePlants() {
+        let plant1 = Plant(name: "Monstera", species: "Monstera Deliciosa", lastWatered: Date(), wateringFrequency: 7, notes: "Likes indirect light")
+        let plant2 = Plant(name: "Snake Plant", species: "Sansevieria", lastWatered: Date(), wateringFrequency: 14, notes: "Very low maintenance")
+        let plant3 = Plant(name: "Pothos", species: "Epipremnum aureum", lastWatered: Date(), wateringFrequency: 5, notes: "Water when soil is dry")
+        
+        plants = [plant1, plant2, plant3]
+    }
+    
+    // MARK: - Table view data source
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return plants.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PlantCell", for: indexPath)
+        
+        // Get the plant for this row
+        let plant = plants[indexPath.row]
+        
+        // Configure the cell
+        cell.textLabel?.text = plant.name
+        cell.detailTextLabel?.text = plant.species
+        
+        return cell
+    }
+    
+    // Enable swipe to delete
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Remove the plant from the array
+            plants.remove(at: indexPath.row)
+            
+            // Delete the row from the table view
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let detailVC = segue.destination as? PlantDetailViewController {
+            
+            if segue.identifier == "ShowPlantDetail" {
+                // Editing existing plant
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    detailVC.plant = plants[indexPath.row]
+                    
+                    // Set up the save callback
+                    detailVC.onSave = { [weak self] updatedPlant in
+                        self?.plants[indexPath.row] = updatedPlant
+                    }
+                }
+                
+            } else if segue.identifier == "AddPlant" {
+                // Creating new plant
+                detailVC.plant = nil  // No plant yet
+                
+                // Set up the save callback to add new plant
+                detailVC.onSave = { [weak self] newPlant in
+                    self?.plants.append(newPlant)
+                }
+            }
+        }
+    }
+}

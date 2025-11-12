@@ -1,0 +1,23 @@
+/* Class = "UITextView"; text = "Talk about your plants here..."; ObjectID = "04z-1W-68x"; */
+"04z-1W-68x.text" = "Расскажите о ваших растениях здесь...";
+
+/* Class = "UILabel"; text = "Notes"; ObjectID = "EyK-P7-hI7"; */
+"EyK-P7-hI7.text" = "Примечания";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "VhD-ud-DnF"; */
+"VhD-ud-DnF.text" = "Подзаголовок";
+
+/* Class = "UIViewController"; title = "Plant Details"; ObjectID = "XqS-Vf-W1M"; */
+"XqS-Vf-W1M.title" = "Детали растения";
+
+/* Class = "UILabel"; text = "Species"; ObjectID = "cgo-Jr-veA"; */
+"cgo-Jr-veA.text" = "Вид";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "gUy-MO-iK4"; */
+"gUy-MO-iK4.text" = "Имя";
+
+/* Class = "UILabel"; text = "Watering Freq. (days)"; ObjectID = "hag-Yu-Qa9"; */
+"hag-Yu-Qa9.text" = "Частота полива (дни)";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "z40-bF-AN9"; */
+"z40-bF-AN9.text" = "Название";
