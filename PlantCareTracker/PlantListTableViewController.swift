@@ -9,7 +9,7 @@ class PlantListTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Set the title for the navigation bar
-        self.title = NSLocalizedString("My Plants", comment: "Title for plant list")
+        self.title = NSLocalizedString("My Garden", comment: "Title for plant list")
         
         // Create some sample plants for testing
         loadSamplePlants()
