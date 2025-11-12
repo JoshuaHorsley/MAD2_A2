@@ -49,6 +49,19 @@ class PlantListTableViewController: UITableViewController {
         cell.textLabel?.text = plant.name
         cell.detailTextLabel?.text = plant.species
         
+        // Calculate if plant needs watering today
+        let daysSinceWatered = Calendar.current.dateComponents([.day], from: plant.lastWatered, to: Date()).day ?? 0
+        let daysUntilNextWatering = plant.wateringFrequency - daysSinceWatered
+        
+        // Show water droplet if needs watering, otherwise leaf
+        if daysUntilNextWatering <= 0 {
+            cell.imageView?.image = UIImage(systemName: "drop.fill")
+            cell.imageView?.tintColor = .systemBlue
+        } else {
+            cell.imageView?.image = UIImage(systemName: "leaf.fill")
+            cell.imageView?.tintColor = .systemGreen
+        }
+        
         return cell
     }
     
