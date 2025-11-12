@@ -17,6 +17,7 @@
 		3FD6DA2B2EC10D4100DDCBAC /* PlantListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD6DA2A2EC10D4100DDCBAC /* PlantListTableViewController.swift */; };
 		3FD6DA302EC115FC00DDCBAC /* PlantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD6DA2F2EC115FC00DDCBAC /* PlantDetailViewController.swift */; };
 		3FD6DA382EC2E81600DDCBAC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3FD6DA3A2EC2E81600DDCBAC /* Localizable.strings */; };
+		3FD6DA3F2EC4200B00DDCBAC /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD6DA3E2EC4200A00DDCBAC /* ScheduleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		3FD6DA332EC2E55C00DDCBAC /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		3FD6DA392EC2E81600DDCBAC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3FD6DA3C2EC2E81C00DDCBAC /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3FD6DA3E2EC4200A00DDCBAC /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				3FD6DA142EC100E500DDCBAC /* SceneDelegate.swift */,
 				3FD6DA162EC100E500DDCBAC /* ViewController.swift */,
 				3FD6DA182EC100E500DDCBAC /* Main.storyboard */,
+				3FD6DA3E2EC4200A00DDCBAC /* ScheduleViewController.swift */,
 				3FD6DA2F2EC115FC00DDCBAC /* PlantDetailViewController.swift */,
 				3FD6DA2A2EC10D4100DDCBAC /* PlantListTableViewController.swift */,
 				3FD6DA1B2EC100FA00DDCBAC /* Assets.xcassets */,
@@ -159,6 +162,7 @@
 				3FD6DA132EC100E500DDCBAC /* AppDelegate.swift in Sources */,
 				3FD6DA2B2EC10D4100DDCBAC /* PlantListTableViewController.swift in Sources */,
 				3FD6DA152EC100E500DDCBAC /* SceneDelegate.swift in Sources */,
+				3FD6DA3F2EC4200B00DDCBAC /* ScheduleViewController.swift in Sources */,
 				3FD6DA302EC115FC00DDCBAC /* PlantDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
