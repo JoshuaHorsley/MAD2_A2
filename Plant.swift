@@ -1,6 +1,6 @@
 import Foundation
 
-struct Plant {
+struct Plant: Codable {
     var id: UUID
     var name: String
     var species: String
