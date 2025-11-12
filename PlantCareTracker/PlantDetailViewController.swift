@@ -9,15 +9,15 @@ class PlantDetailViewController: UIViewController {
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var plant: Plant?
-    var onSave: ((Plant) -> Void)?  // Callback to save changes
+    var onSave: ((Plant) -> Void)?
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         // Create plant (either new or updated)
         let plantToSave = Plant(
-            id: plant?.id ?? UUID(),  // Use existing ID or create new one
+            id: plant?.id ?? UUID(),
             name: nameTextField.text ?? "",
             species: speciesTextField.text ?? "",
-            lastWatered: plant?.lastWatered ?? Date(),  // Use existing date or today
+            lastWatered: plant?.lastWatered ?? Date(),
             wateringFrequency: Int(wateringFrequencyTextField.text ?? "7") ?? 7,
             notes: notesTextView.text ?? ""
         )
@@ -31,6 +31,17 @@ class PlantDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Style text fields
+        nameTextField.borderStyle = .roundedRect
+        speciesTextField.borderStyle = .roundedRect
+        wateringFrequencyTextField.borderStyle = .roundedRect
+        
+        // Add rounded corners to notes text view
+        notesTextView.layer.cornerRadius = 8
+        notesTextView.layer.borderWidth = 1
+        notesTextView.layer.borderColor = UIColor.lightGray.cgColor
+        notesTextView.clipsToBounds = true
+        
         // Display the plant information if we have a plant
         if let plant = plant {
             nameTextField.text = plant.name
@@ -43,7 +54,7 @@ class PlantDetailViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
     }
-
+    
     // Function to dismiss keyboard
     @objc func dismissKeyboard() {
         view.endEditing(true)

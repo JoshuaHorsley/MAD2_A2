@@ -9,6 +9,7 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Watering Schedule"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -24,6 +25,17 @@ class ScheduleViewController: UIViewController, UITableViewDataSource, UITableVi
             if let navController = tabBarController.viewControllers?[0] as? UINavigationController {
                 if let plantListVC = navController.viewControllers.first as? PlantListTableViewController {
                     plants = plantListVC.plants
+                    
+                    // Sort plants by days until next watering (soonest first)
+                    plants.sort { plant1, plant2 in
+                        let days1 = Calendar.current.dateComponents([.day], from: plant1.lastWatered, to: Date()).day ?? 0
+                        let daysUntil1 = plant1.wateringFrequency - days1
+                        
+                        let days2 = Calendar.current.dateComponents([.day], from: plant2.lastWatered, to: Date()).day ?? 0
+                        let daysUntil2 = plant2.wateringFrequency - days2
+                        
+                        return daysUntil1 < daysUntil2
+                    }
                 }
             }
         }
