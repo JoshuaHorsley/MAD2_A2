@@ -1,5 +1,17 @@
+//  FILE:        Plant.swift
+//  PROJECT:     PlantCareTracker
+//  COURSE:      Mobile Application Development 2 
+//  DATE:        11 - 05 - 2025
+//  AUTHORS:     Josh Horsley, Will Lee, Jack Prudnikowicz, Kalina Cathcart 
+//  DESCRIPTION: This file defines the Plant data model used in the PlantCareTracker app.
+
 import Foundation
 
+
+/*
+ * STRUCT:      Plant
+ * DESCRIPTION: Represents a single plant record with identifying information and care-related data. 
+ */
 struct Plant: Codable {
     var id: UUID
     var name: String
