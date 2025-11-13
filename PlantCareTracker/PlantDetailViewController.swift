@@ -9,9 +9,11 @@ import UIKit
 
 // CLASS:        PlantDetailViewController
 // DESCRIPTION:  This view controller allows users to add or edit a plant's details, validate the input, and save the data using a callback closure.
+
 class PlantDetailViewController: UIViewController {
 
     // Text fields for entering plant details
+    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var speciesTextField: UITextField!
     @IBOutlet weak var wateringFrequencyTextField: UITextField!
@@ -27,6 +29,7 @@ class PlantDetailViewController: UIViewController {
      * RETURN:      none
      * DESCRIPTION: Validates user input and creates a new or updated Plant object, and displays alerts if validation fails.
      */
+    
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         
         // Validate input before saving

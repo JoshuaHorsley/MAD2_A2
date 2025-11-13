@@ -10,6 +10,7 @@ import UIKit
 
 // CLASS:       PlantListTableViewController
 // DESCRIPTION: Displays a list of the user's plants and their basic information.
+
 class PlantListTableViewController: UITableViewController {
     
     // Array to store all plants
@@ -28,6 +29,7 @@ class PlantListTableViewController: UITableViewController {
     // RETURNS:     void
     // DESCRIPTION: Called when the view is first loaded into memory.
     //              Sets the title and loads existing plants from storage, or sample data if none exists.
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,6 +45,7 @@ class PlantListTableViewController: UITableViewController {
     // RETURNS:     void
     // DESCRIPTION: Called each time the view is about to appear.
     //              Refreshes the table view to show any updated plant information.
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Reload table data when returning to this screen
@@ -54,6 +57,7 @@ class PlantListTableViewController: UITableViewController {
     // RETURNS:     void
     // DESCRIPTION: Attempts to load the saved plants from a JSON file in the app's document directory.
     //              If the file doesn’t exist or an error occurs, loads default sample plants instead.
+    
     func loadPlants() {
         if FileManager.default.fileExists(atPath: plantsFilePath.path) {
             do {
@@ -73,6 +77,7 @@ class PlantListTableViewController: UITableViewController {
     // PARAMETERS:  none
     // RETURNS:     void
     // DESCRIPTION: Encodes the plants array into JSON format and writes it to the file path for persistence.
+    
     func savePlants() {
         do {
             let encoder = JSONEncoder()
@@ -89,9 +94,9 @@ class PlantListTableViewController: UITableViewController {
     // DESCRIPTION: Creates a few sample plants to display when no saved data exists.
     //              These examples help populate the list for first-time users.
     func loadSamplePlants() {
-        let plant1 = Plant(name: "Monstera", species: "Monstera Deliciosa", lastWatered: Date(), wateringFrequency: 7, notes: "Likes indirect light")
-        let plant2 = Plant(name: "Snake Plant", species: "Sansevieria", lastWatered: Date(), wateringFrequency: 14, notes: "Very low maintenance")
-        let plant3 = Plant(name: "Pothos", species: "Epipremnum aureum", lastWatered: Date(), wateringFrequency: 5, notes: "Water when soil is dry")
+        let plant1 = Plant(name: "Kevin", species: "Money Tree", lastWatered: Date(), wateringFrequency: 14, notes: "Likes direct light")
+        let plant2 = Plant(name: "Jake", species: "Snake Plant", lastWatered: Date(), wateringFrequency: 7, notes: "Very low maintenance")
+        let plant3 = Plant(name: "Diefenbaker", species: "Dieffenbachia", lastWatered: Date(), wateringFrequency: 7, notes: "Water when soil is dry")
         
         plants = [plant1, plant2, plant3]
         savePlants()
@@ -102,6 +107,7 @@ class PlantListTableViewController: UITableViewController {
     // PARAMETERS:  tableView: UITableView - The table view requesting the number of sections.
     // RETURNS:     Int - Number of sections in the table (always one).
     // DESCRIPTION: Returns how many sections to display in the table view.
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -111,6 +117,7 @@ class PlantListTableViewController: UITableViewController {
     //              section: Int - The index of the section.
     // RETURNS:     Int - Number of plants to display.
     // DESCRIPTION: Returns the total number of plants currently in the list.
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return plants.count
     }
@@ -121,6 +128,7 @@ class PlantListTableViewController: UITableViewController {
     // RETURNS:     UITableViewCell - Configured cell displaying plant information.
     // DESCRIPTION: Configures each table view cell to show the plant's name, species,
     //              and an icon that visually indicates if the plant needs watering.
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlantCell", for: indexPath)
         
@@ -153,6 +161,7 @@ class PlantListTableViewController: UITableViewController {
     //              indexPath: IndexPath - The index path of the affected row.
     // RETURNS:     void
     // DESCRIPTION: Enables swipe-to-delete functionality. Removes a plant from the list and updates saved data.
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Remove the plant from the array
@@ -170,6 +179,7 @@ class PlantListTableViewController: UITableViewController {
     // RETURNS:     void
     // DESCRIPTION: Prepares the destination view controller before navigation occurs.
     //              Passes the selected plant for editing, or sets up a new plant for creation.
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let detailVC = segue.destination as? PlantDetailViewController {
             if segue.identifier == "ShowPlantDetail" {
