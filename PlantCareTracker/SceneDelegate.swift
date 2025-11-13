@@ -1,12 +1,16 @@
-//
-//  SceneDelegate.swift
-//  PlantCareTracker
-//
-//  Created by Student on 2025-11-09.
-//
+//  FILE:        SceneDelegate.swift
+//  PROJECT:     PlantCareTracker
+//  COURSE:      Mobile Application Development 2 
+//  DATE:        11 - 05 - 2025
+//  AUTHORS:     Josh Horsley, Will Lee, Jack Prudnikowicz, Kalina Cathcart 
+//  DESCRIPTION: Manages the app’s scene lifecycle, including when the app enters the foreground or background, 
+//                becomes active or inactive, and handles initialization of the main window scene.
 
 import UIKit
 
+// CLASS:       SceneDelegate
+// DESCRIPTION: Handles the lifecycle of a single UI scene in the application.
+//              Responsible for responding to state transitions such as launching, entering background, or becoming active again.
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
