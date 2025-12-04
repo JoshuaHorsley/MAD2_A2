@@ -4,146 +4,105 @@
 //  DATE:        11-09-2025
 //  AUTHORS:     Josh Horsley, Will Lee, Jack Prudnikowicz, Kalina Cathcart
 //  DESCRIPTION: Manages the list of plants displayed in a table view.
-//               Handles loading, saving, and deleting plants, as well as navigation to the plant detail view for adding or editing plants.
+//               Handles loading, saving, and deleting plants using Core Data.
+//               Includes context menu for plant actions.
 
 import UIKit
+import CoreData
 
 // CLASS:       PlantListTableViewController
 // DESCRIPTION: Displays a list of the user's plants and their basic information.
+//              Provides context menu for editing, marking as watered, and deleting plants.
 
 class PlantListTableViewController: UITableViewController {
     
-    // Array to store all plants
-    var plants: [Plant] = []
-    
-    // File path for saving plants data
-    var plantsFilePath: URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let documentsDirectory = paths[0]
-        return documentsDirectory.appendingPathComponent("plants.json")
-    }
-
-
-    // NAME:        viewDidLoad
-    // PARAMETERS:  none
-    // RETURNS:     void
-    // DESCRIPTION: Called when the view is first loaded into memory.
-    //              Sets the title and loads existing plants from storage, or sample data if none exists.
+    var plants: [PlantEntity] = []
+    let coreDataManager = CoreDataManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set the title for the navigation bar with localization
         self.title = NSLocalizedString("My Garden", comment: "Title for plant list")
-        
-        // Load plants from file, or create sample plants if file doesn't exist
         loadPlants()
     }
     
-    // NAME:        viewWillAppear
-    // PARAMETERS:  animated: Bool - Indicates if the appearance is animated
-    // RETURNS:     void
-    // DESCRIPTION: Called each time the view is about to appear.
-    //              Refreshes the table view to show any updated plant information.
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // Reload table data when returning to this screen
+        loadPlants()
         tableView.reloadData()
     }
     
     // NAME:        loadPlants
     // PARAMETERS:  none
     // RETURNS:     void
-    // DESCRIPTION: Attempts to load the saved plants from a JSON file in the app's document directory.
-    //              If the file doesn’t exist or an error occurs, loads default sample plants instead.
+    // DESCRIPTION: Fetches plants from Core Data. If none exist, loads sample plants.
     
     func loadPlants() {
-        if FileManager.default.fileExists(atPath: plantsFilePath.path) {
-            do {
-                let data = try Data(contentsOf: plantsFilePath)
-                let decoder = JSONDecoder()
-                plants = try decoder.decode([Plant].self, from: data)
-            } catch {
-                print("Error loading plants: \(error)")
+        let fetchRequest: NSFetchRequest<PlantEntity> = PlantEntity.fetchRequest()
+        
+        do {
+            plants = try coreDataManager.context.fetch(fetchRequest)
+            if plants.isEmpty {
                 loadSamplePlants()
             }
-        } else {
-            loadSamplePlants()
-        }
-    }
-    
-    // NAME:        savePlants
-    // PARAMETERS:  none
-    // RETURNS:     void
-    // DESCRIPTION: Encodes the plants array into JSON format and writes it to the file path for persistence.
-    
-    func savePlants() {
-        do {
-            let encoder = JSONEncoder()
-            let data = try encoder.encode(plants)
-            try data.write(to: plantsFilePath)
         } catch {
-            print("Error saving plants: \(error)")
+            print("Error fetching plants: \(error)")
         }
     }
     
     // NAME:        loadSamplePlants
     // PARAMETERS:  none
     // RETURNS:     void
-    // DESCRIPTION: Creates a few sample plants to display when no saved data exists.
-    //              These examples help populate the list for first-time users.
+    // DESCRIPTION: Creates sample plants for first-time users.
+    
     func loadSamplePlants() {
-        let plant1 = Plant(name: "Kevin", species: "Money Tree", lastWatered: Date(), wateringFrequency: 14, notes: "Likes direct light")
-        let plant2 = Plant(name: "Jake", species: "Snake Plant", lastWatered: Date(), wateringFrequency: 7, notes: "Very low maintenance")
-        let plant3 = Plant(name: "Diefenbaker", species: "Dieffenbachia", lastWatered: Date(), wateringFrequency: 7, notes: "Water when soil is dry")
+        let plant1 = PlantEntity(context: coreDataManager.context)
+        plant1.id = UUID()
+        plant1.name = "Kevin"
+        plant1.species = "Money Tree"
+        plant1.lastWatered = Date()
+        plant1.wateringFrequency = 14
+        plant1.notes = "Likes direct light"
         
-        plants = [plant1, plant2, plant3]
-        savePlants()
+        let plant2 = PlantEntity(context: coreDataManager.context)
+        plant2.id = UUID()
+        plant2.name = "Jake"
+        plant2.species = "Snake Plant"
+        plant2.lastWatered = Date()
+        plant2.wateringFrequency = 7
+        plant2.notes = "Very low maintenance"
+        
+        let plant3 = PlantEntity(context: coreDataManager.context)
+        plant3.id = UUID()
+        plant3.name = "Diefenbaker"
+        plant3.species = "Dieffenbachia"
+        plant3.lastWatered = Date()
+        plant3.wateringFrequency = 7
+        plant3.notes = "Water when soil is dry"
+        
+        coreDataManager.saveContext()
+        loadPlants()
     }
 
-
-     // NAME:        numberOfSections
-    // PARAMETERS:  tableView: UITableView - The table view requesting the number of sections.
-    // RETURNS:     Int - Number of sections in the table (always one).
-    // DESCRIPTION: Returns how many sections to display in the table view.
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    // NAME:        tableView(_:numberOfRowsInSection:)
-    // PARAMETERS:  tableView: UITableView - The table view requesting the number of rows.
-    //              section: Int - The index of the section.
-    // RETURNS:     Int - Number of plants to display.
-    // DESCRIPTION: Returns the total number of plants currently in the list.
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return plants.count
     }
 
-    // NAME:        tableView(_:cellForRowAt:)
-    // PARAMETERS:  tableView: UITableView - The table view requesting the cell.
-    //              indexPath: IndexPath - The index path of the cell.
-    // RETURNS:     UITableViewCell - Configured cell displaying plant information.
-    // DESCRIPTION: Configures each table view cell to show the plant's name, species,
-    //              and an icon that visually indicates if the plant needs watering.
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlantCell", for: indexPath)
         
-        // Get the plant for this row
         let plant = plants[indexPath.row]
         
-        // Configure the cell
         cell.textLabel?.text = plant.name
         cell.detailTextLabel?.text = plant.species
         
-        // Calculate if plant needs watering today
-        let daysSinceWatered = Calendar.current.dateComponents([.day], from: plant.lastWatered, to: Date()).day ?? 0
-        let daysUntilNextWatering = plant.wateringFrequency - daysSinceWatered
+        let daysSinceWatered = Calendar.current.dateComponents([.day], from: plant.lastWatered ?? Date(), to: Date()).day ?? 0
+        let daysUntilNextWatering = Int(plant.wateringFrequency) - daysSinceWatered
         
-        // Show water droplet if needs watering, otherwise leaf
         if daysUntilNextWatering <= 0 {
             cell.imageView?.image = UIImage(systemName: "drop.fill")
             cell.imageView?.tintColor = .systemBlue
@@ -155,51 +114,67 @@ class PlantListTableViewController: UITableViewController {
         return cell
     }
     
-    // NAME:        tableView(_:commit:forRowAt:)
-    // PARAMETERS:  tableView: UITableView - The table view performing the action.
-    //              editingStyle: UITableViewCell.EditingStyle - The editing style (e.g., delete).
-    //              indexPath: IndexPath - The index path of the affected row.
-    // RETURNS:     void
-    // DESCRIPTION: Enables swipe-to-delete functionality. Removes a plant from the list and updates saved data.
-    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Remove the plant from the array
+            let plantToDelete = plants[indexPath.row]
+            coreDataManager.context.delete(plantToDelete)
+            coreDataManager.saveContext()
+            
             plants.remove(at: indexPath.row)
-            // Delete the row from the table view
             tableView.deleteRows(at: [indexPath], with: .fade)
-            // Save the updated plants array
-            savePlants()
         }
     }
     
-    // NAME:        prepare(for:sender:)
-    // PARAMETERS:  segue: UIStoryboardSegue - The segue object containing transition information.
-    //              sender: Any? - The object that triggered the segue.
-    // RETURNS:     void
-    // DESCRIPTION: Prepares the destination view controller before navigation occurs.
-    //              Passes the selected plant for editing, or sets up a new plant for creation.
+    // NAME:        tableView(_:contextMenuConfigurationForRowAt:point:)
+    // PARAMETERS:  tableView: UITableView - The table view
+    //              indexPath: IndexPath - The row being long-pressed
+    //              point: CGPoint - The location of the long-press
+    // RETURNS:     UIContextMenuConfiguration - The menu configuration
+    // DESCRIPTION: Creates a context menu when user long-presses a plant cell.
+    //              Menu includes Edit, Mark as Watered, and Delete options.
+    
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let plant = plants[indexPath.row]
+        
+        let config = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (actions) -> UIMenu? in
+            
+            // Edit action
+            let editAction = UIAction(title: NSLocalizedString("Edit", comment: "Edit plant"), image: UIImage(systemName: "pencil")) { _ in
+                self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+                self.performSegue(withIdentifier: "ShowPlantDetail", sender: self)
+            }
+            
+            // Mark as watered action
+            let waterAction = UIAction(title: NSLocalizedString("Mark as Watered", comment: "Mark watered"), image: UIImage(systemName: "drop.fill")) { _ in
+                plant.lastWatered = Date()
+                self.coreDataManager.saveContext()
+                self.tableView.reloadRows(at: [indexPath], with: .none)
+            }
+            
+            // Delete action
+            let deleteAction = UIAction(title: NSLocalizedString("Delete", comment: "Delete plant"), image: UIImage(systemName: "trash"), attributes: .destructive) { _ in
+                self.coreDataManager.context.delete(plant)
+                self.coreDataManager.saveContext()
+                self.plants.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            
+            return UIMenu(title: plant.name ?? "Plant", children: [editAction, waterAction, deleteAction])
+        }
+        
+        return config
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let detailVC = segue.destination as? PlantDetailViewController {
             if segue.identifier == "ShowPlantDetail" {
-                // Editing existing plant
                 if let indexPath = tableView.indexPathForSelectedRow {
                     detailVC.plant = plants[indexPath.row]
-                    // Set up the save callback
-                    detailVC.onSave = { [weak self] updatedPlant in
-                        self?.plants[indexPath.row] = updatedPlant
-                        self?.savePlants()
-                    }
+                    detailVC.coreDataManager = CoreDataManager.shared
                 }
             } else if segue.identifier == "AddPlant" {
-                // Creating new plant
-                detailVC.plant = nil // No plant yet
-                // Set up the save callback to add new plant
-                detailVC.onSave = { [weak self] newPlant in
-                    self?.plants.append(newPlant)
-                    self?.savePlants()
-                }
+                detailVC.plant = nil
+                detailVC.coreDataManager = CoreDataManager.shared
             }
         }
     }
