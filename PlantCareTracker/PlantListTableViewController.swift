@@ -18,14 +18,22 @@ class PlantListTableViewController: UITableViewController {
     
     var plants: [PlantEntity] = []
     let coreDataManager = CoreDataManager.shared
-    
+
+    // FUNCTION:    viewDidLoad
+    // PARAMETERS:  none
+    // RETURNS:     void
+    // DESCRIPTION: This function is called when view is first loaded, in which it sets the navigation title and loads plants from Core Data.
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = NSLocalizedString("My Garden", comment: "Title for plant list")
         loadPlants()
     }
-    
+
+    // FUNCTION:    viewWillAppear
+    // PARAMETERS:  animated - Bool indicating if appearance should be animated
+    // RETURNS:     void
+    // DESCRIPTION: This function is called before view appears on screen. It reloads plant data and refreshes table view.
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadPlants()
@@ -53,7 +61,7 @@ class PlantListTableViewController: UITableViewController {
     // NAME:        loadSamplePlants
     // PARAMETERS:  none
     // RETURNS:     void
-    // DESCRIPTION: Creates sample plants for first-time users.
+    // DESCRIPTION: Creates sample plants.
     
     func loadSamplePlants() {
         let plant1 = PlantEntity(context: coreDataManager.context)
@@ -84,14 +92,29 @@ class PlantListTableViewController: UITableViewController {
         loadPlants()
     }
 
+    // FUNCTION:    numberOfSections
+    // PARAMETERS:  tableView - The table view requesting this information
+    // RETURNS:     Int - The number of sections (always 1)
+    // DESCRIPTION: This UITableViewDataSource method returns the number of sections in the table view, which will always be 1.
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
+    // FUNCTION:    tableView
+    // PARAMETERS:  tableView - The table view requesting this information
+    //              section - The section index
+    // RETURNS:     Int - The number of rows, equal to number of plants
+    // DESCRIPTION: This UITableViewDataSource method returns the number of rows in the specified section.
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return plants.count
     }
 
+    // FUNCTION:    tableView
+    // PARAMETERS:  tableView - The table view requesting the cell
+    //              indexPath - The location of the row
+    // RETURNS:     UITableViewCell - A configured cell displaying plant information
+    // DESCRIPTION: Configures and returns a cell for the given index path. 
+    //              Displays plant name, species, and a water drop icon if plant needs watering today or is overdue.
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlantCell", for: indexPath)
         
@@ -113,7 +136,14 @@ class PlantListTableViewController: UITableViewController {
         
         return cell
     }
-    
+
+    // FUNCTION:    tableView
+    // PARAMETERS:  tableView - The table view
+    //              editingStyle - The editing style, whether insert or delete
+    //              indexPath - The row being edited
+    // RETURNS:     void
+    // DESCRIPTION: This function handles swipe-to-delete action. 
+    //              Deletes the plant from Core Data and removes the row from the table view with a fade animation.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let plantToDelete = plants[indexPath.row]
@@ -157,7 +187,14 @@ class PlantListTableViewController: UITableViewController {
         
         return config
     }
-    
+
+
+    // FUNCTION:    prepare(for:sender:)
+    // PARAMETERS:  segue - The segue being performed
+    //              sender - The object that triggered the segue
+    // RETURNS:     void
+    // DESCRIPTION: This function prepares navigation to PlantDetailViewController.
+    //              It passes the selected plant for editing or nil if adding a new plant. Also passes CoreDataManager instance.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let detailVC = segue.destination as? PlantDetailViewController {
             if segue.identifier == "ShowPlantDetail" {
