@@ -6,28 +6,43 @@
 
 import UIKit
 
+
+// CLASS:       AppDelegate
+// DESCRIPTION: Main application delegate class that manages the app's lifecycle and handles scene-based lifecycle events.     
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
-
+    // FUNCTION:    application
+    // PARAMETERS:  application - The singleton app object
+    //              launchOptions - Dictionary indicating reason app was launched (may be nil)
+    // RETURNS:     Bool - false to prevent app from launching, true otherwise
+    // DESCRIPTION: Called when application has finished launching.
+    //              Is the override point for customization after application launch.
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
         return true
     }
 
-    // MARK: UISceneSession Lifecycle
 
+    // FUNCTION:    application
+    // PARAMETERS:  application - The singleton app object
+    //              connectingSceneSession - The session being created
+    //              options - Connection options for the scene
+    // RETURNS:     UISceneConfiguration - Configuration for the new scene
+    // DESCRIPTION: This function is called when a new scene session is being created. 
+    //              Returns the configuration to create the new scene with.
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 
+    // FUNCTION:    application(_:didDiscardSceneSessions:)
+    // PARAMETERS:  application - The singleton app object
+    //              sceneSessions - Set of scene sessions that were discarded
+    // RETURNS:     void
+    // DESCRIPTION: Called when the user discards a scene session. 
+    //              It is used to release any resources that were specific to the discarded scenes.
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
 
