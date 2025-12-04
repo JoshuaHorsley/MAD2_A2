@@ -144,13 +144,6 @@ class PlantListTableViewController: UITableViewController {
                 self.performSegue(withIdentifier: "ShowPlantDetail", sender: self)
             }
             
-            // Mark as watered action
-            let waterAction = UIAction(title: NSLocalizedString("Mark as Watered", comment: "Mark watered"), image: UIImage(systemName: "drop.fill")) { _ in
-                plant.lastWatered = Date()
-                self.coreDataManager.saveContext()
-                self.tableView.reloadRows(at: [indexPath], with: .none)
-            }
-            
             // Delete action
             let deleteAction = UIAction(title: NSLocalizedString("Delete", comment: "Delete plant"), image: UIImage(systemName: "trash"), attributes: .destructive) { _ in
                 self.coreDataManager.context.delete(plant)
@@ -159,7 +152,7 @@ class PlantListTableViewController: UITableViewController {
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
             }
             
-            return UIMenu(title: plant.name ?? "Plant", children: [editAction, waterAction, deleteAction])
+            return UIMenu(title: plant.name ?? "Plant", children: [editAction, deleteAction])
         }
         
         return config
