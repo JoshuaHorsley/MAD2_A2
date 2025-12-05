@@ -1,7 +1,7 @@
 //  FILE:        PlantDetailViewController.swift
 //  PROJECT:     PlantCareTracker
 //  COURSE:      Mobile Application Development 2
-//  DATE:        11 - 05 - 2025
+//  DATE:        12 - 04 - 2025
 //  AUTHORS:     Josh Horsley, Will Lee, Jack Prudnikowicz, Kalina Cathcart
 //  DESCRIPTION: Data entity class that represents a plant in the PlantCareTracker app.
 

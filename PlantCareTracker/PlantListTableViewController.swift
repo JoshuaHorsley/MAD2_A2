@@ -1,7 +1,7 @@
 //  FILE:        PlantListTableViewController.swift
 //  PROJECT:     PlantCareTracker
 //  COURSE:      Mobile Application Development 2
-//  DATE:        11-09-2025
+//  DATE:        12-03-2025
 //  AUTHORS:     Josh Horsley, Will Lee, Jack Prudnikowicz, Kalina Cathcart
 //  DESCRIPTION: Manages the list of plants displayed in a table view.
 //               Handles loading, saving, and deleting plants using Core Data.

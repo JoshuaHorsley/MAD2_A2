@@ -1,7 +1,7 @@
 //  FILE:        SceneDelegate.swift
 //  PROJECT:     PlantCareTracker
-//  COURSE:      Mobile Application Development 2 
-//  DATE:        11 - 05 - 2025
+//  COURSE:      Mobile Application Development 2
+//  DATE:        12 - 03 - 2025
 //  AUTHORS:     Josh Horsley, Will Lee, Jack Prudnikowicz, Kalina Cathcart 
 //  DESCRIPTION: Manages the app’s scene lifecycle, including when the app enters the foreground or background, 
 //                becomes active or inactive, and handles initialization of the main window scene.

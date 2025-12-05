@@ -1,7 +1,7 @@
 //  FILE:        SceneDelegate.swift
 //  PROJECT:     PlantCareTracker
 //  COURSE:      Mobile Application Development 2
-//  DATE:        11 - 05 - 2025
+//  DATE:        12 - 03 - 2025
 //  AUTHORS:     Josh Horsley, Will Lee, Jack Prudnikowicz, Kalina Cathcart 
 
 import UIKit

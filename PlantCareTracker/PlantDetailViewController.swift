@@ -1,7 +1,7 @@
 //  FILE:        PlantDetailViewController.swift
 //  PROJECT:     PlantCareTracker
 //  COURSE:      Mobile Application Development 2
-//  DATE:        11 - 05 - 2025
+//  DATE:        12 - 03 - 2025
 //  AUTHORS:     Josh Horsley, Will Lee, Jack Prudnikowicz, Kalina Cathcart
 //  DESCRIPTION: This view controller allows users to add or edit a plant's details, validate the input, and save the data using Core Data.
 //               Includes camera/photo library integration for plant photos.
